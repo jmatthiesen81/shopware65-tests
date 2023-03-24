@@ -11,7 +11,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1623305620ChangeSalutationIdNullable
  */
 class Migration1623305620ChangeSalutationIdNullableTest extends TestCase
@@ -43,7 +42,7 @@ class Migration1623305620ChangeSalutationIdNullableTest extends TestCase
 
     public function testSalutationColumnsAreNullable(): void
     {
-        $schema = $this->connection->createSchemaManager();
+        $schema = $this->connection->getSchemaManager();
 
         /** @var array<Column[]> $columns */
         $columns = array_map(static fn (string $table): array => $schema->listTableColumns($table), MigrationTested::TABLES);

@@ -47,7 +47,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  * @package customer-order
  *
  * @internal
- *
  * @group store-api
  */
 class RegisterRouteTest extends TestCase
@@ -335,7 +334,7 @@ class RegisterRouteTest extends TestCase
     /**
      * @return array{array{array{domain: string, expectDomain: string}}, array{array{domain: string, expectDomain: string}}}
      */
-    public static function registerWithDomainAndLeadingSlashProvider(): array
+    public function registerWithDomainAndLeadingSlashProvider(): array
     {
         return [
             // test without leading slash
@@ -395,7 +394,7 @@ class RegisterRouteTest extends TestCase
 
         $responseData = json_decode((string) $response->getContent(), true, 512, \JSON_THROW_ON_ERROR);
         static::assertArrayHasKey('errors', $responseData);
-        if (Feature::isActive('v6.6.0.0')) {
+        if (Feature::isActive('v6.5.0.0')) {
             static::assertSame('CHECKOUT__CUSTOMER_OPTIN_NOT_COMPLETED', $responseData['errors'][0]['code']);
         } else {
             static::assertSame('CHECKOUT__CUSTOMER_IS_INACTIVE', $responseData['errors'][0]['code']);
@@ -676,7 +675,7 @@ class RegisterRouteTest extends TestCase
     /**
      * @return array<int, array<int, bool|int>>
      */
-    public static function customerBoundToSalesChannelProvider(): array
+    public function customerBoundToSalesChannelProvider(): array
     {
         $isCustomerScoped = true;
         $hasGlobalAccount = true; // Account which has bound_sales_channel_id = null
@@ -813,7 +812,7 @@ class RegisterRouteTest extends TestCase
     public function testRegistrationBusinessAccountWithVatIdsNotMatchRegex(): void
     {
         $this->getContainer()->get(Connection::class)
-            ->executeStatement('UPDATE `country` SET `check_vat_id_pattern` = 1, `vat_id_pattern` = "(DE)?[0-9]{9}" WHERE id = :id', ['id' => Uuid::fromHexToBytes($this->getValidCountryId($this->ids->get('sales-channel')))]);
+            ->executeUpdate('UPDATE `country` SET `check_vat_id_pattern` = 1, `vat_id_pattern` = "(DE)?[0-9]{9}" WHERE id = :id', ['id' => Uuid::fromHexToBytes($this->getValidCountryId($this->ids->get('sales-channel')))]);
 
         $additionalData = [
             'accountType' => CustomerEntity::ACCOUNT_TYPE_BUSINESS,
@@ -846,7 +845,7 @@ class RegisterRouteTest extends TestCase
     public function testRegistrationBusinessAccountWithVatIdsMatchRegex(): void
     {
         $this->getContainer()->get(Connection::class)
-            ->executeStatement('UPDATE `country` SET `check_vat_id_pattern` = 1, `vat_id_pattern` = "(DE)?[0-9]{9}" WHERE id = :id', ['id' => Uuid::fromHexToBytes($this->getValidCountryId())]);
+            ->executeUpdate('UPDATE `country` SET `check_vat_id_pattern` = 1, `vat_id_pattern` = "(DE)?[0-9]{9}" WHERE id = :id', ['id' => Uuid::fromHexToBytes($this->getValidCountryId())]);
 
         $additionalData = [
             'accountType' => CustomerEntity::ACCOUNT_TYPE_BUSINESS,

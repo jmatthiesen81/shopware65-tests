@@ -22,7 +22,7 @@ use Shopware\Core\System\StateMachine\Aggregation\StateMachineTransition\StateMa
 /**
  * @internal
  */
-class AppPreparedPaymentHandlerTest extends AbstractAppPaymentHandlerTestCase
+class AppPreparedPaymentHandlerTest extends AbstractAppPaymentHandlerTest
 {
     public function testValidate(): void
     {

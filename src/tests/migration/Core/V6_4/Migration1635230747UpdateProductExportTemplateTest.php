@@ -13,7 +13,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1635230747UpdateProductExportTemplate
  */
 class Migration1635230747UpdateProductExportTemplateTest extends TestCase
@@ -50,7 +49,7 @@ class Migration1635230747UpdateProductExportTemplateTest extends TestCase
     /**
      * @return array{old_template: string, expectedTemplate: string}[][]
      */
-    public static function dataProvider(): array
+    public function dataProvider(): array
     {
         /** @var array<string, string> $templates */
         $templates = require __DIR__ . '/../../../../src/Core/Migration/Fixtures/productComparison-export-profiles/templates.php';

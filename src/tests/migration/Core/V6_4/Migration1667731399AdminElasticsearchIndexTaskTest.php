@@ -11,7 +11,6 @@ use Shopware\Core\Migration\V6_4\Migration1667731399AdminElasticsearchIndexTask;
  * @package core
  *
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1667731399AdminElasticsearchIndexTask
  */
 class Migration1667731399AdminElasticsearchIndexTaskTest extends TestCase
@@ -31,7 +30,7 @@ class Migration1667731399AdminElasticsearchIndexTaskTest extends TestCase
         $migration = new Migration1667731399AdminElasticsearchIndexTask();
         $migration->update($this->connection);
 
-        $schemaManager = $this->connection->createSchemaManager();
+        $schemaManager = $this->connection->getSchemaManager();
         $columns = $schemaManager->listTableColumns('admin_elasticsearch_index_task');
 
         static::assertNotEmpty($columns);

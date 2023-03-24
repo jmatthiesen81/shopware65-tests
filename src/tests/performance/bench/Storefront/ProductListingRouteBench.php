@@ -71,8 +71,8 @@ class ProductListingRouteBench extends BenchCase
             ->load($this->ids->get(self::CATEGORY_KEY), new Request(), $this->context, $criteria);
     }
 
-    protected static function getKernel(): KernelInterface
+    protected function getKernel(): KernelInterface
     {
-        return self::getContainer()->get('kernel');
+        return $this->getContainer()->get('kernel');
     }
 }

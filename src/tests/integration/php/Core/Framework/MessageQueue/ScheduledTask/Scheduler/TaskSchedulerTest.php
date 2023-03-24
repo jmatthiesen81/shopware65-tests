@@ -58,7 +58,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => TestTask::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => ScheduledTaskDefinition::STATUS_SCHEDULED,
                 'nextExecutionTime' => (new \DateTime())->modify('-1 second'),
             ],
@@ -91,7 +90,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => TestTask::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => ScheduledTaskDefinition::STATUS_SCHEDULED,
                 'nextExecutionTime' => (new \DateTime())->modify('+1 minute'),
             ],
@@ -121,7 +119,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => TestTask::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => $status,
                 'nextExecutionTime' => (new \DateTime())->modify('-1 second'),
             ],
@@ -140,7 +137,7 @@ class TaskSchedulerTest extends TestCase
     /**
      * @return list<array{0: string}>
      */
-    public static function nonScheduledStatus(): array
+    public function nonScheduledStatus(): array
     {
         return [
             [ScheduledTaskDefinition::STATUS_RUNNING],
@@ -171,7 +168,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test_1',
                 'scheduledTaskClass' => FooMessage::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => ScheduledTaskDefinition::STATUS_SCHEDULED,
                 'nextExecutionTime' => (new \DateTime())->modify('-1 second'),
             ],
@@ -183,7 +179,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test_2',
                 'scheduledTaskClass' => TestTask::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => ScheduledTaskDefinition::STATUS_SCHEDULED,
                 'nextExecutionTime' => (new \DateTime())->modify('-1 minute'),
             ],
@@ -213,7 +208,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => TestTask::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => ScheduledTaskDefinition::STATUS_SCHEDULED,
                 'nextExecutionTime' => $nextExecutionTime,
             ],
@@ -221,7 +215,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => FooMessage::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => ScheduledTaskDefinition::STATUS_FAILED,
                 'nextExecutionTime' => $nextExecutionTime->modify('-10 seconds'),
             ],
@@ -249,7 +242,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => TestTask::class,
                 'runInterval' => 300,
-                'defaultRunInterval' => 300,
                 'status' => ScheduledTaskDefinition::STATUS_FAILED,
                 'nextExecutionTime' => $nextExecutionTime->modify('-10 seconds'),
             ],
@@ -270,7 +262,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => TestTask::class,
                 'runInterval' => 200,
-                'defaultRunInterval' => 200,
                 'status' => ScheduledTaskDefinition::STATUS_SCHEDULED,
                 'nextExecutionTime' => new \DateTime(),
             ],
@@ -278,7 +269,6 @@ class TaskSchedulerTest extends TestCase
                 'name' => 'test',
                 'scheduledTaskClass' => FooMessage::class,
                 'runInterval' => 5,
-                'defaultRunInterval' => 5,
                 'status' => ScheduledTaskDefinition::STATUS_FAILED,
                 'nextExecutionTime' => new \DateTime(),
             ],

@@ -44,7 +44,6 @@ class ActionButtonResponseFactoryTest extends TestCase
     /**
      * @param array<string, mixed> $payload
      * @param class-string $response
-     *
      * @dataProvider provideActionTypes
      */
     public function testFactoryCreatesCorrespondingResponse(string $actionType, array $payload, string $response): void
@@ -74,7 +73,7 @@ class ActionButtonResponseFactoryTest extends TestCase
     /**
      * @return array<int, array<int, array<string, bool|string>|string>>
      */
-    public static function provideActionTypes(): array
+    public function provideActionTypes(): array
     {
         return [
             [

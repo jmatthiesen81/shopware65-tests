@@ -2,7 +2,7 @@
 
 namespace Shopware\Tests\Migration\Core\V6_4;
 
-use Doctrine\DBAL\ArrayParameterType;
+use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Test\TestCaseBase\KernelLifecycleManager;
 use Shopware\Core\Migration\V6_4\Migration1624884801MakeMailLinksConfigurable;
@@ -10,7 +10,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1624884801MakeMailLinksConfigurable
  */
 class Migration1624884801MakeMailLinksConfigurableTest extends TestCase
@@ -43,7 +42,7 @@ class Migration1624884801MakeMailLinksConfigurableTest extends TestCase
                     'core.loginRegistration.confirmationUrl',
                 ],
             ],
-            ['keys' => ArrayParameterType::STRING]
+            ['keys' => Connection::PARAM_STR_ARRAY]
         );
 
         static::assertEquals('{"_value": "/registration/confirm?em=%%HASHEDEMAIL%%&hash=%%SUBSCRIBEHASH%%"}', $configs[0]['configuration_value']);

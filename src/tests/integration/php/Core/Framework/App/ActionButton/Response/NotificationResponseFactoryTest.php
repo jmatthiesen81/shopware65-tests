@@ -58,7 +58,7 @@ class NotificationResponseFactoryTest extends TestCase
     /**
      * @return array<int, array<int, string|bool>>
      */
-    public static function provideActionTypes(): array
+    public function provideActionTypes(): array
     {
         return [
             [NotificationResponse::ACTION_TYPE, true],

@@ -26,9 +26,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * @internal
- *
  * @group store-api
- *
  * @covers \Shopware\Core\Checkout\Cart\SalesChannel\CartOrderRoute
  */
 class CartOrderRouteTest extends TestCase
@@ -447,7 +445,7 @@ class CartOrderRouteTest extends TestCase
         $intervalInDays = $intervalInSeconds / 86400 + 1;
 
         // expire $originalToken context
-        $connection->executeStatement(
+        $connection->executeUpdate(
             '
             UPDATE sales_channel_api_context
             SET updated_at = DATE_ADD(updated_at, INTERVAL :intervalInDays DAY)',

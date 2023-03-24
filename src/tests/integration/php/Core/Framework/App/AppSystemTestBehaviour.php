@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 trait AppSystemTestBehaviour
 {
-    abstract protected static function getContainer(): ContainerInterface;
+    abstract protected function getContainer(): ContainerInterface;
 
     protected function getAppLoader(string $appDir): AppLoader
     {

@@ -60,7 +60,6 @@ class OpenNewTabResponseFactoryTest extends TestCase
 
     /**
      * @param array<string, mixed> $payload
-     *
      * @dataProvider provideInvalidPayloads
      */
     public function testThrowsExceptionWhenValidationFails(array $payload, string $message): void
@@ -78,7 +77,7 @@ class OpenNewTabResponseFactoryTest extends TestCase
     /**
      * @return array<array<string|bool>>
      */
-    public static function provideActionTypes(): array
+    public function provideActionTypes(): array
     {
         return [
             [NotificationResponse::ACTION_TYPE, false],
@@ -91,7 +90,7 @@ class OpenNewTabResponseFactoryTest extends TestCase
     /**
      * @return array<array<string|array<string, mixed>>>
      */
-    public static function provideInvalidPayloads(): array
+    public function provideInvalidPayloads(): array
     {
         return [
             [

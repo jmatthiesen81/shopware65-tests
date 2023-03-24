@@ -33,7 +33,6 @@ use Shopware\Tests\Integration\Storefront\Theme\fixtures\SimpleTheme\SimpleTheme
 
 /**
  * @internal
- *
  * @covers \Shopware\Storefront\Theme\ThemeLifecycleHandler
  */
 class ThemeLifecycleHandlerTest extends TestCase
@@ -64,7 +63,7 @@ class ThemeLifecycleHandlerTest extends TestCase
 
         $this->configFactory = $this->getContainer()->get(StorefrontPluginConfigurationFactory::class);
 
-        $this->getContainer()->get(Connection::class)->executeStatement('DELETE FROM `theme_sales_channel`');
+        $this->getContainer()->get(Connection::class)->executeUpdate('DELETE FROM `theme_sales_channel`');
         $this->assignThemeToDefaultSalesChannel();
     }
 

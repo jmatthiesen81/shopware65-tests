@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_4\Migration1665064823AddRuleAreas;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1665064823AddRuleAreas
  */
 class Migration1665064823AddRuleAreasTest extends TestCase

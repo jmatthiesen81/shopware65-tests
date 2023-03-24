@@ -14,7 +14,6 @@ trait GuzzleTestClientBehaviour
 
     /**
      * @before
-     *
      * @after
      */
     public function resetHistory(): void

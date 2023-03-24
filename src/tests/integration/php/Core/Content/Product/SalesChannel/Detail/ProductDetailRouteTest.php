@@ -13,9 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Content\Product\SalesChannel\Detail\ProductDetailRoute
- *
  * @group store-api
  */
 class ProductDetailRouteTest extends TestCase

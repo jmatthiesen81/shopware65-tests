@@ -86,7 +86,6 @@ use function array_combine;
 
 /**
  * @internal
- *
  * @group skip-paratest
  *
  * @package system-settings
@@ -479,7 +478,6 @@ class ElasticsearchProductTest extends TestCase
 
     /**
      * @depends testIndexing
-     *
      * @dataProvider multiFilterWithOneToManyRelationProvider
      *
      * @param array<string> $expectedProducts
@@ -507,7 +505,7 @@ class ElasticsearchProductTest extends TestCase
     /**
      * @return array<int, array<MultiFilter|string[]>>
      */
-    public static function multiFilterWithOneToManyRelationProvider(): array
+    public function multiFilterWithOneToManyRelationProvider(): array
     {
         return [
             [
@@ -1769,7 +1767,6 @@ class ElasticsearchProductTest extends TestCase
 
     /**
      * @depends      testIndexing
-     *
      * @dataProvider dateHistogramProvider
      */
     public function testDateHistogram(DateHistogramCase $case, IdsCollection $data): void
@@ -1821,7 +1818,7 @@ class ElasticsearchProductTest extends TestCase
     /**
      * @return array<int, array<int, DateHistogramCase>>
      */
-    public static function dateHistogramProvider(): array
+    public function dateHistogramProvider(): array
     {
         return [
             [
@@ -3130,7 +3127,7 @@ class ElasticsearchProductTest extends TestCase
     /**
      * @return array<string, array{productIds: string, expected: int}>
      */
-    public static function variantListingConfigProvider(): iterable
+    public function variantListingConfigProvider(): iterable
     {
         yield 'Should index main product when displayParent is true' => ['productIds' => 'variant-1', 'expected' => 3];
         yield 'Should not index main product when displayParent is false' => ['productIds' => 'variant-2', 'expected' => 2];
@@ -3139,7 +3136,7 @@ class ElasticsearchProductTest extends TestCase
     /**
      * @return array<string, array{rangesDefinition: mixed, rangesExpectedResult: mixed}>
      */
-    public static function rangeAggregationDataProvider(): iterable
+    public function rangeAggregationDataProvider(): iterable
     {
         yield 'default ranges test cases' => [
             'rangesDefinition' => [
@@ -3165,7 +3162,6 @@ class ElasticsearchProductTest extends TestCase
 
     /**
      * @depends testIndexing
-     *
      * @dataProvider rangeAggregationDataProvider
      *
      * @param array<int, array<string, string|float>> $rangesDefinition

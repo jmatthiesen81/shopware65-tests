@@ -77,7 +77,7 @@ class CategoryBreadcrumbBuilderTest extends TestCase
     /**
      * @return iterable<array<string|boolean>>
      */
-    public static function breadcrumbDataProvider(): iterable
+    public function breadcrumbDataProvider(): iterable
     {
         yield ['navigation', true, false];
         yield ['navigation', true, true];
@@ -95,7 +95,7 @@ class CategoryBreadcrumbBuilderTest extends TestCase
     /**
      * @return iterable<array<boolean>>
      */
-    public static function seoCategoryProvider(): iterable
+    public function seoCategoryProvider(): iterable
     {
         yield [false, false, false];
         yield [false, false, false];
@@ -110,7 +110,6 @@ class CategoryBreadcrumbBuilderTest extends TestCase
 
     /**
      * @dataProvider breadcrumbDataProvider
-     *
      * @group slow
      */
     public function testIsWithoutEntrypoint(string $key, bool $withSalesChannel, bool $withCategoryId = false): void
@@ -173,7 +172,6 @@ class CategoryBreadcrumbBuilderTest extends TestCase
 
     /**
      * @dataProvider seoCategoryProvider
-     *
      * @group slow
      */
     public function testItHasSeoCategory(bool $hasCategories, bool $hasMainCategory, bool $hasMainCategory2ndChannel): void

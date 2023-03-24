@@ -19,7 +19,6 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Content\Product\SearchKeyword\ProductSearchTermInterpreter
  */
 class ProductSearchTermInterpreterTest extends TestCase
@@ -148,7 +147,7 @@ class ProductSearchTermInterpreterTest extends TestCase
     /**
      * @return array<array{0: string, 1: list<string>}>
      */
-    public static function cases(): array
+    public function cases(): array
     {
         return [
             [
@@ -177,7 +176,7 @@ class ProductSearchTermInterpreterTest extends TestCase
     /**
      * @return array<array{0: string, 1: list<string>}>
      */
-    public static function casesWithTokenFilter(): array
+    public function casesWithTokenFilter(): array
     {
         return [
             [
@@ -214,7 +213,7 @@ class ProductSearchTermInterpreterTest extends TestCase
     /**
      * @return array<array{0: string, 1: list<list<string>>}>
      */
-    public static function caseWithFetchingTokenTerms(): array
+    public function caseWithFetchingTokenTerms(): array
     {
         return [
             [
@@ -301,7 +300,7 @@ class ProductSearchTermInterpreterTest extends TestCase
     /**
      * @return array<array{0: bool, 1: string}>
      */
-    public static function caseWithMatchingBooleanCause(): array
+    public function caseWithMatchingBooleanCause(): array
     {
         return [
             [
@@ -318,7 +317,7 @@ class ProductSearchTermInterpreterTest extends TestCase
     /**
      * @return array<array{0: bool, 1: string}>
      */
-    public static function caseWithMatchingSearchPatternTermLength(): array
+    public function caseWithMatchingSearchPatternTermLength(): array
     {
         return [
             [

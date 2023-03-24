@@ -43,7 +43,7 @@ use Shopware\Tests\Integration\Core\Framework\App\GuzzleTestClientBehaviour;
 /**
  * @internal
  */
-abstract class AbstractAppPaymentHandlerTestCase extends TestCase
+abstract class AbstractAppPaymentHandlerTest extends TestCase
 {
     use GuzzleTestClientBehaviour;
 

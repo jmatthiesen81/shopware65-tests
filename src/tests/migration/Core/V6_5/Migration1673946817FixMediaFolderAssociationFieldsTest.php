@@ -11,7 +11,6 @@ use Shopware\Core\Migration\V6_5\Migration1673946817FixMediaFolderAssociationFie
  * @package core
  *
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_5\Migration1673946817FixMediaFolderAssociationFields
  */
 class Migration1673946817FixMediaFolderAssociationFieldsTest extends TestCase

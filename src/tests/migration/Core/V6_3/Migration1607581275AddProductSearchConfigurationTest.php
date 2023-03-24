@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_3\Migration1607581275AddProductSearchConfiguratio
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_3\Migration1607581275AddProductSearchConfiguration
  */
 class Migration1607581275AddProductSearchConfigurationTest extends TestCase

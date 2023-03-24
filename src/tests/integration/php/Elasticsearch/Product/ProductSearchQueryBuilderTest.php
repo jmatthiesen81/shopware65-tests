@@ -2,7 +2,6 @@
 
 namespace Shopware\Tests\Integration\Elasticsearch\Product;
 
-use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Content\Test\Product\ProductBuilder;
@@ -218,7 +217,7 @@ class ProductSearchQueryBuilderTest extends TestCase
     /**
      * @return iterable<string, array{array<string>, string, array<string>}>
      */
-    public static function providerSearchCases(): iterable
+    public function providerSearchCases(): iterable
     {
         yield 'search inside description' => [
             ['name', 'description'],
@@ -303,7 +302,7 @@ class ProductSearchQueryBuilderTest extends TestCase
                 'fields' => $enabledFields,
             ],
             [
-                'fields' => ArrayParameterType::STRING,
+                'fields' => Connection::PARAM_STR_ARRAY,
             ]
         );
 

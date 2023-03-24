@@ -13,7 +13,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_3\Migration1590408550AclResources
  */
 class Migration1590408550AclResourcesTest extends TestCase
@@ -102,7 +101,7 @@ CREATE TABLE `acl_resource` (
     /**
      * @return array<string, array<string, array<string>>[]>
      */
-    public static function migrationCases(): array
+    public function migrationCases(): array
     {
         return [
             'no roles or privs' => [

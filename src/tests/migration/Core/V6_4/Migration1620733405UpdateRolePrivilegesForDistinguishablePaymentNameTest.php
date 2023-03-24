@@ -11,7 +11,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1620733405UpdateRolePrivilegesForDistinguishablePaymentName
  */
 class Migration1620733405UpdateRolePrivilegesForDistinguishablePaymentNameTest extends TestCase

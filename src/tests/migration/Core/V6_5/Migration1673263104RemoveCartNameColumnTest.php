@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_5\Migration1673263104RemoveCartNameColumn;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_5\Migration1673263104RemoveCartNameColumn
  */
 class Migration1673263104RemoveCartNameColumnTest extends TestCase

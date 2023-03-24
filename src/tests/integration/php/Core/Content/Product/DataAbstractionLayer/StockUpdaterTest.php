@@ -5,11 +5,10 @@ namespace Shopware\Tests\Integration\Core\Content\Product\DataAbstractionLayer;
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Cart\LineItem\LineItem;
-use Shopware\Core\Checkout\Cart\LineItemFactoryHandler\ProductLineItemFactory;
-use Shopware\Core\Checkout\Cart\PriceDefinitionFactory;
 use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
 use Shopware\Core\Checkout\Order\Aggregate\OrderLineItem\OrderLineItemEntity;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
+use Shopware\Core\Content\Product\Cart\ProductLineItemFactory;
 use Shopware\Core\Content\Product\ProductCollection;
 use Shopware\Core\Content\Product\ProductEntity;
 use Shopware\Core\Defaults;
@@ -33,9 +32,7 @@ use Shopware\Core\Test\TestDefaults;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Content\Product\DataAbstractionLayer\StockUpdater
- *
  * @group slow
  */
 class StockUpdaterTest extends TestCase
@@ -787,12 +784,11 @@ class StockUpdaterTest extends TestCase
 
     private function orderProduct(string $id, int $quantity): string
     {
-        $factory = new ProductLineItemFactory(new PriceDefinitionFactory());
-        $lineItem = $factory->create(['id' => $id, 'referencedId' => $id, 'quantity' => $quantity], $this->context);
+        $factory = new ProductLineItemFactory();
 
         $cart = $this->cartService->getCart($this->context->getToken(), $this->context);
 
-        $cart = $this->cartService->add($cart, $lineItem, $this->context);
+        $cart = $this->cartService->add($cart, $factory->create($id, ['quantity' => $quantity]), $this->context);
 
         $item = $cart->get($id);
         static::assertInstanceOf(LineItem::class, $item);

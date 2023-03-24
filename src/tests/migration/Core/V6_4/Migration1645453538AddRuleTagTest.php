@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_4\Migration1645453538AddRuleTag;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1645453538AddRuleTag
  */
 class Migration1645453538AddRuleTagTest extends TestCase
@@ -29,7 +28,7 @@ class Migration1645453538AddRuleTagTest extends TestCase
         $migration = new Migration1645453538AddRuleTag();
         $migration->update($this->connection);
 
-        $schemaManager = $this->connection->createSchemaManager();
+        $schemaManager = $this->connection->getSchemaManager();
         $columns = $schemaManager->listTableColumns('rule_tag');
 
         static::assertNotEmpty($columns);

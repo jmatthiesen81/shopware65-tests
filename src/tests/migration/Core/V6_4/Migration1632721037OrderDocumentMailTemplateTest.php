@@ -14,7 +14,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1632721037OrderDocumentMailTemplate
  */
 class Migration1632721037OrderDocumentMailTemplateTest extends TestCase
@@ -162,7 +161,7 @@ class Migration1632721037OrderDocumentMailTemplateTest extends TestCase
             ->setParameter('creditNote', MailTemplateTypes::MAILTYPE_DOCUMENT_CREDIT_NOTE)
             ->setParameter('cancellation', MailTemplateTypes::MAILTYPE_DOCUMENT_CANCELLATION_INVOICE)
             ->setParameter('deliveryNote', MailTemplateTypes::MAILTYPE_DOCUMENT_DELIVERY_NOTE)
-            ->executeQuery()
+            ->execute()
             ->fetchFirstColumn();
 
         return $result;
@@ -181,7 +180,7 @@ class Migration1632721037OrderDocumentMailTemplateTest extends TestCase
                 ->setParameter($parameter, $associatedId, ParameterType::BINARY);
         }
 
-        $query->executeStatement();
+        $query->execute();
     }
 
     /**

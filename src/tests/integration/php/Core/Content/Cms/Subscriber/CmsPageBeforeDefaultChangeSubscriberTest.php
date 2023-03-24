@@ -18,7 +18,6 @@ use Shopware\Core\Test\TestDefaults;
  * @internal
  *
  * @package content
- *
  * @covers \Shopware\Core\Content\Cms\Subscriber\CmsPageDefaultChangeSubscriber
  */
 class CmsPageBeforeDefaultChangeSubscriberTest extends TestCase
@@ -96,7 +95,7 @@ class CmsPageBeforeDefaultChangeSubscriberTest extends TestCase
         }
     }
 
-    public static function validDefaultCmsPageDataProvider(): \Generator
+    public function validDefaultCmsPageDataProvider(): \Generator
     {
         $ids = new IdsCollection();
 
@@ -111,7 +110,7 @@ class CmsPageBeforeDefaultChangeSubscriberTest extends TestCase
         ];
     }
 
-    public static function invalidDefaultCmsPageDataProvider(): \Generator
+    public function invalidDefaultCmsPageDataProvider(): \Generator
     {
         $ids = new IdsCollection();
 

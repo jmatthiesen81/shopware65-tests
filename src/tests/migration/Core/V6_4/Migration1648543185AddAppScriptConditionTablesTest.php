@@ -14,7 +14,6 @@ use Shopware\Core\Migration\V6_4\Migration1648543185AddAppScriptConditionTables;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1648543185AddAppScriptConditionTables
  */
 class Migration1648543185AddAppScriptConditionTablesTest extends TestCase
@@ -67,7 +66,7 @@ class Migration1648543185AddAppScriptConditionTablesTest extends TestCase
         $scriptIdForeignKey = null;
 
         foreach ($foreignKeys as $foreignKey) {
-            if ($foreignKey->getLocalColumns() === ['script_id'] && $foreignKey->getForeignTableName() === AppScriptConditionDefinition::ENTITY_NAME) {
+            if ($foreignKey->getColumns() === ['script_id'] && $foreignKey->getForeignTableName() === AppScriptConditionDefinition::ENTITY_NAME) {
                 $scriptIdForeignKey = $foreignKey;
 
                 break;

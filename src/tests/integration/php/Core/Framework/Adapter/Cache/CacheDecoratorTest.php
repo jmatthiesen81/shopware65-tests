@@ -9,7 +9,6 @@ use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
 
 /**
  * @internal
- *
  * @group cache
  *
  * @covers \Shopware\Core\Framework\Adapter\Cache\CacheDecorator

@@ -2,7 +2,6 @@
 
 namespace Shopware\Tests\Integration\Core\Content\Product\DataAbstractionLayer;
 
-use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Content\Product\ProductEntity;
@@ -16,7 +15,6 @@ use Shopware\Core\Framework\Uuid\Uuid;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Content\Product\DataAbstractionLayer\ProductCategoryDenormalizer
  */
 class ProductCategoryDenormalizerTest extends TestCase
@@ -88,7 +86,7 @@ class ProductCategoryDenormalizerTest extends TestCase
                 'productId' => Uuid::fromHexToBytes($productId),
                 'categoryIds' => Uuid::fromHexToBytesList($categoryIds),
             ],
-            ['categoryIds' => ArrayParameterType::STRING]
+            ['categoryIds' => Connection::PARAM_STR_ARRAY]
         );
     }
 

@@ -10,7 +10,6 @@ use Shopware\Core\Migration\V6_4\Migration1648031636AddPositionFieldToShippingMe
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1648031636AddPositionFieldToShippingMethod
  */
 class Migration1648031636AddPositionFieldToShippingMethodTest extends TestCase
@@ -49,7 +48,7 @@ class Migration1648031636AddPositionFieldToShippingMethodTest extends TestCase
     private function hasColumn(string $table, string $columnName): bool
     {
         return \count(array_filter(
-            $this->connection->createSchemaManager()->listTableColumns($table),
+            $this->connection->getSchemaManager()->listTableColumns($table),
             static fn (Column $column): bool => $column->getName() === $columnName
         )) > 0;
     }

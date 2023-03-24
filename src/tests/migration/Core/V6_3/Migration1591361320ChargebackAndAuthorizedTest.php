@@ -10,7 +10,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_3\Migration1591361320ChargebackAndAuthorized
  */
 class Migration1591361320ChargebackAndAuthorizedTest extends TestCase

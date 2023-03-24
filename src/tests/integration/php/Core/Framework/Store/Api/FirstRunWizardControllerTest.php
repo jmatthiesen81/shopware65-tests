@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Api\Context\AdminApiSource;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Store\Api\FirstRunWizardController;
 use Shopware\Core\Framework\Store\Authentication\StoreRequestOptionsProvider;
 use Shopware\Core\Framework\Store\Event\FirstRunWizardFinishedEvent;
@@ -24,9 +23,10 @@ use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 /**
+ * @package merchant-services
+ *
  * @internal
  */
-#[Package('merchant-services')]
 class FirstRunWizardControllerTest extends TestCase
 {
     use IntegrationTestBehaviour;
@@ -72,7 +72,7 @@ class FirstRunWizardControllerTest extends TestCase
         $context = $this->createAdminStoreContext();
 
         // Response for request of FirstRunWizardClient::frwLogin()
-        $this->getFrwRequestHandler()->append(new Response(
+        $this->getRequestHandler()->append(new Response(
             body: json_encode([
                 'firstRunWizardUserToken' => [
                     'token' => $frwUserToken,
@@ -118,7 +118,7 @@ class FirstRunWizardControllerTest extends TestCase
         $this->getRequestHandler()->append(new Response());
 
         // Response for request of FirstRunWizardClient::upgradeAccessToken()
-        $this->getFrwRequestHandler()->append(new Response(
+        $this->getRequestHandler()->append(new Response(
             body: json_encode([
                 'shopUserToken' => [
                     'token' => $shopUserToken,
@@ -154,12 +154,12 @@ class FirstRunWizardControllerTest extends TestCase
         $context = $this->createAdminStoreContext();
 
         // Response for first request of FirstRunWizardClient::getLicenseDomains()
-        $this->getFrwRequestHandler()->append(new Response(
+        $this->getRequestHandler()->append(new Response(
             body: json_encode([], \JSON_THROW_ON_ERROR),
         ));
 
         // Response for request of FirstRunWizardClient::fetchVerificationInfo()
-        $this->getFrwRequestHandler()->append(new Response(
+        $this->getRequestHandler()->append(new Response(
             body: json_encode([
                 'fileName' => 'sw-verification-hash.html',
                 'content' => 'sw-v3rific4ti0n-h4sh',
@@ -167,10 +167,10 @@ class FirstRunWizardControllerTest extends TestCase
         ));
 
         // Response for request of FirstRunWizardClient::checkVerificationSecret()
-        $this->getFrwRequestHandler()->append(new Response());
+        $this->getRequestHandler()->append(new Response());
 
         // Response for second request of FirstRunWizardClient::getLicenseDomains()
-        $this->getFrwRequestHandler()->append(new Response(
+        $this->getRequestHandler()->append(new Response(
             body: json_encode([
                 [
                     'id' => 123456,

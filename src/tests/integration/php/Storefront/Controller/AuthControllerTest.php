@@ -17,7 +17,6 @@ use Shopware\Core\Checkout\Customer\SalesChannel\SendPasswordRecoveryMailRoute;
 use Shopware\Core\Checkout\Test\Cart\LineItem\Group\Helpers\Traits\LineItemTestFixtureBehaviour;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\Defaults;
-use Shopware\Core\DevOps\Environment\EnvironmentHelper;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
@@ -186,7 +185,7 @@ class AuthControllerTest extends TestCase
         $browser->getCookieJar()->set($sessionCookie);
 
         // Try opening account page
-        $browser->request('GET', EnvironmentHelper::getVariable('APP_URL') . '/account', []);
+        $browser->request('GET', $_SERVER['APP_URL'] . '/account', []);
         $response = $browser->getResponse();
         $session = $browser->getRequest()->getSession();
 
@@ -256,7 +255,7 @@ class AuthControllerTest extends TestCase
 
         $browser->request(
             'POST',
-            EnvironmentHelper::getVariable('APP_URL') . '/account/login',
+            $_SERVER['APP_URL'] . '/account/login',
             $this->tokenize('frontend.account.login', [
                 'username' => 'test@example.com',
                 'password' => 'test12345',
@@ -601,7 +600,7 @@ class AuthControllerTest extends TestCase
         $browser = KernelLifecycleManager::createBrowser($this->getKernel());
         $browser->request(
             'POST',
-            EnvironmentHelper::getVariable('APP_URL') . '/account/login',
+            $_SERVER['APP_URL'] . '/account/login',
             $this->tokenize('frontend.account.login', [
                 'username' => $customer->getEmail(),
                 'password' => 'test12345',
@@ -693,7 +692,7 @@ class AuthControllerTest extends TestCase
             $salesChannelContextOptions
         );
 
-        $request = Request::create((string) EnvironmentHelper::getVariable('APP_URL'));
+        $request = new Request();
         $request->query->add($params);
         $request->setSession($this->getSession());
         $request->attributes->add([

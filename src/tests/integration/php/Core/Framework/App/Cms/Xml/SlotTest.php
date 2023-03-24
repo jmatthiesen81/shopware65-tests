@@ -22,7 +22,6 @@ class SlotTest extends TestCase
 
     /**
      * @param array<string, mixed> $config
-     *
      * @dataProvider provideSlots
      */
     public function testSlotsFromXml(int $i, string $name, string $type, array $config): void
@@ -39,7 +38,6 @@ class SlotTest extends TestCase
 
     /**
      * @param array<string, mixed> $config
-     *
      * @dataProvider provideSlots
      */
     public function testToArray(int $i, string $name, string $type, array $config): void
@@ -62,7 +60,7 @@ class SlotTest extends TestCase
     /**
      * @return array<array<string|int|array<string, mixed>>>
      */
-    public static function provideSlots(): array
+    public function provideSlots(): array
     {
         return [
             [

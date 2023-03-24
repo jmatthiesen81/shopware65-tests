@@ -12,7 +12,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1620376945AddCompanyTaxAndCustomerTaxToCountry
  */
 class Migration1620376945AddCompanyTaxAndCustomerTaxToCountryTest extends TestCase
@@ -69,7 +68,7 @@ class Migration1620376945AddCompanyTaxAndCustomerTaxToCountryTest extends TestCa
     /**
      * @return array<string, array<array<string, mixed>>>
      */
-    public static function dataProvider(): array
+    public function dataProvider(): array
     {
         return [
             'Write old value' => [

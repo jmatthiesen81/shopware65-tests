@@ -35,7 +35,6 @@ use Shopware\Core\Framework\DataAbstractionLayer\Pricing\CashRoundingConfig;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Event\EventData\MailRecipientStruct;
 use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
-use Shopware\Core\Framework\Test\TestCaseBase\KernelLifecycleManager;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\Framework\Validation\DataBag\DataBag;
 use Shopware\Core\System\Locale\LanguageLocaleCodeProvider;
@@ -206,7 +205,7 @@ class SendMailActionTest extends TestCase
     /**
      * @return iterable<string, mixed>
      */
-    public static function sendMailProvider(): iterable
+    public function sendMailProvider(): iterable
     {
         yield 'Test send mail default' => [['type' => 'customer']];
         yield 'Test send mail admin' => [['type' => 'admin']];
@@ -220,7 +219,7 @@ class SendMailActionTest extends TestCase
         yield 'Test send mail with attachments from order setting' => [['type' => 'customer'], [], true];
         yield 'Test send mail with attachments from order setting and flow setting ' => [
             ['type' => 'customer'],
-            [self::getDocIdByType(DeliveryNoteRenderer::TYPE)],
+            [$this->getDocIdByType(DeliveryNoteRenderer::TYPE)],
             true,
         ];
     }
@@ -442,7 +441,7 @@ class SendMailActionTest extends TestCase
     /**
      * @return iterable<string, array<int, bool>>
      */
-    public static function sendMailContactFormProvider(): iterable
+    public function sendMailContactFormProvider(): iterable
     {
         yield 'Test send mail has data valid' => [true, true, true];
         yield 'Test send mail contact form without email' => [false, true, true];
@@ -576,12 +575,15 @@ class SendMailActionTest extends TestCase
         }
     }
 
-    public static function updateTemplateDataProvider(): \Generator
+    public function updateTemplateDataProvider(): \Generator
     {
         yield 'Test disable mail template updates' => [false];
         yield 'Test enable mail template updates' => [true];
     }
 
+    /**
+     * @group quarantined
+     */
     public function testTranslatorInjectionInMail(): void
     {
         $criteria = new Criteria();
@@ -611,6 +613,10 @@ class SendMailActionTest extends TestCase
 
         $event = new ContactFormEvent($context, TestDefaults::SALES_CHANNEL, new MailRecipientStruct(['test@example.com' => 'Shopware ag']), new DataBag());
         $translator = $this->getContainer()->get(Translator::class);
+
+        if ($translator->getSnippetSetId()) {
+            $translator->resetInjection();
+        }
 
         $mailService = new TestEmailService();
         $subscriber = new SendMailAction(
@@ -758,9 +764,9 @@ class SendMailActionTest extends TestCase
         return $document->getId();
     }
 
-    private static function getDocIdByType(string $documentType): ?string
+    private function getDocIdByType(string $documentType): ?string
     {
-        $document = KernelLifecycleManager::getConnection()->fetchFirstColumn(
+        $document = $this->getContainer()->get(Connection::class)->fetchFirstColumn(
             'SELECT LOWER(HEX(`id`)) FROM `document_type` WHERE `technical_name` = :documentType',
             [
                 'documentType' => $documentType,
@@ -785,10 +791,8 @@ class TestEmailService extends MailService
      */
     public ?array $data = null;
 
-    public function __construct(
-        private readonly ?MailFactory $mailFactory = null,
-        private readonly ?MailerTransportDecorator $decorator = null
-    ) {
+    public function __construct(private readonly ?MailFactory $mailFactory = null, private readonly ?MailerTransportDecorator $decorator = null)
+    {
     }
 
     /**

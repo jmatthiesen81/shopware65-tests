@@ -10,7 +10,6 @@ use Shopware\Core\Migration\V6_4\Migration1650249241UpdateTypeOfDepartmentAddres
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1650249241UpdateTypeOfDepartmentAddress
  */
 class Migration1650249241UpdateTypeOfDepartmentAddressTest extends TestCase
@@ -37,7 +36,7 @@ class Migration1650249241UpdateTypeOfDepartmentAddressTest extends TestCase
 
     public function testDepartmentColumnCustomerAddress(): void
     {
-        $schema = $this->connection->createSchemaManager();
+        $schema = $this->connection->getSchemaManager();
 
         $column = array_filter($schema->listTableColumns('customer_address'), static fn (Column $column): bool => $column->getName() === 'department');
 
@@ -51,7 +50,7 @@ class Migration1650249241UpdateTypeOfDepartmentAddressTest extends TestCase
 
     public function testDepartmentColumnOrderAddress(): void
     {
-        $schema = $this->connection->createSchemaManager();
+        $schema = $this->connection->getSchemaManager();
 
         $column = array_filter($schema->listTableColumns('order_address'), static fn (Column $column): bool => $column->getName() === 'department');
 

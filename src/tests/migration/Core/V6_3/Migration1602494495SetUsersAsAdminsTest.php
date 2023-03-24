@@ -8,7 +8,6 @@ use Shopware\Core\Migration\V6_3\Migration1602494495SetUsersAsAdmins;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_3\Migration1602494495SetUsersAsAdmins
  */
 class Migration1602494495SetUsersAsAdminsTest extends TestCase

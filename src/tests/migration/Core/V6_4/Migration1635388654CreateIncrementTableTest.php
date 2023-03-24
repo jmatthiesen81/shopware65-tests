@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_4\Migration1635388654CreateIncrementTable;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1635388654CreateIncrementTable
  */
 class Migration1635388654CreateIncrementTableTest extends TestCase
@@ -29,7 +28,7 @@ class Migration1635388654CreateIncrementTableTest extends TestCase
         $migration = new Migration1635388654CreateIncrementTable();
         $migration->update($this->connection);
 
-        $schemaManager = $this->connection->createSchemaManager();
+        $schemaManager = $this->connection->getSchemaManager();
         $columns = $schemaManager->listTableColumns('increment');
 
         static::assertNotEmpty($columns);

@@ -4,8 +4,6 @@ namespace Shopware\Tests\Integration\Core\Content\Flow\Dispatching;
 
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Cart\Cart;
-use Shopware\Core\Checkout\Cart\LineItemFactoryHandler\ProductLineItemFactory;
-use Shopware\Core\Checkout\Cart\PriceDefinitionFactory;
 use Shopware\Core\Checkout\Cart\Rule\CartVolumeRule;
 use Shopware\Core\Checkout\Cart\Rule\LineItemRule;
 use Shopware\Core\Checkout\Cart\Rule\LineItemTotalPriceRule;
@@ -17,6 +15,7 @@ use Shopware\Core\Checkout\Order\OrderDefinition;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Content\Flow\Dispatching\Action\AddOrderTagAction;
 use Shopware\Core\Content\Flow\Rule\OrderTagRule;
+use Shopware\Core\Content\Product\Cart\ProductLineItemFactory;
 use Shopware\Core\Content\Test\Product\ProductBuilder;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -300,8 +299,8 @@ class FlowExecutorTest extends TestCase
 
     private function addProductToCart(string $productId, int $quantity, Cart $cart, CartService $cartService, SalesChannelContext $context): Cart
     {
-        $factory = new ProductLineItemFactory(new PriceDefinitionFactory());
-        $product = $factory->create(['id' => $productId, 'referencedId' => $productId, 'quantity' => $quantity], $context);
+        $factory = new ProductLineItemFactory();
+        $product = $factory->create($productId, ['quantity' => $quantity]);
 
         return $cartService->add($cart, $product, $context);
     }

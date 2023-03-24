@@ -10,7 +10,6 @@ use Shopware\Core\Migration\V6_5\Migration1669291632MigrateLineItemsInCartRule;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_5\Migration1669291632MigrateLineItemsInCartRule
  */
 class Migration1669291632MigrateLineItemsInCartRuleTest extends TestCase

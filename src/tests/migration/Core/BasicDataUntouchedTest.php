@@ -8,18 +8,18 @@ use Shopware\Core\Migration\V6_3\Migration1536233560BasicData;
 
 /**
  * @internal
- *
  * @coversNothing
  */
 class BasicDataUntouchedTest extends TestCase
 {
     public function testBasicDataUntouched(): void
     {
-        $file = KernelLifecycleManager::getClassLoader()->findFile(Migration1536233560BasicData::class);
-        static::assertIsString($file);
+        $loader = KernelLifecycleManager::getClassLoader();
+        /** @var string $file */
+        $file = $loader->findFile(Migration1536233560BasicData::class);
 
         static::assertSame(
-            'f7d6941bdee90a11dfc65a891756c6dbdca6c3f8',
+            'd9f207e8a9f72e831b2a0f495bfa2d86094da0f3',
             sha1_file($file),
             'BasicData migration has changed. This is not allowed.'
         );

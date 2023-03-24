@@ -80,7 +80,7 @@ class Migration1675247112ChangeCountryNamingConventionTest extends TestCase
         static::assertEquals($result['name'], $expected);
     }
 
-    public static function dataProviderForTestChangeCountryNamingConvention(): \Generator
+    public function dataProviderForTestChangeCountryNamingConvention(): \Generator
     {
         yield 'Test with translation EN' => [
             'language' => 'EN',

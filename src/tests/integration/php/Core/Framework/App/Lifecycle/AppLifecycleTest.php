@@ -37,6 +37,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
+use Shopware\Core\Framework\Feature;
 use Shopware\Core\Framework\Script\Debugging\ScriptTraces;
 use Shopware\Core\Framework\Script\Execution\Script;
 use Shopware\Core\Framework\Script\Execution\ScriptLoader;
@@ -49,6 +50,7 @@ use Shopware\Core\System\CustomField\Aggregate\CustomFieldSetRelation\CustomFiel
 use Shopware\Core\System\CustomField\CustomFieldCollection;
 use Shopware\Core\System\CustomField\CustomFieldEntity;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Core\Test\Annotation\DisabledFeatures;
 use Shopware\Tests\Integration\Core\Framework\App\GuzzleTestClientBehaviour;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use function preg_replace;
@@ -94,6 +96,12 @@ class AppLifecycleTest extends TestCase
         $this->connection = $this->getContainer()->get(Connection::class);
     }
 
+    /**
+     * Due to the deprecation of NewsletterUpdateEvent (in NewsletterEvents).
+     * Only remove DisabledFeatures not the method when removing the event
+     *
+     * @DisabledFeatures(features={"FEATURE_NEXT_15172"})
+     */
     public function testInstall(): void
     {
         $manifest = Manifest::createFromXmlFile(__DIR__ . '/../Manifest/_fixtures/test/manifest.xml');

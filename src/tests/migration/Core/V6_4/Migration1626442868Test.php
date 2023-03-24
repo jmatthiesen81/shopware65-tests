@@ -10,7 +10,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1626442868AddGermanSalesChannelDescription
  */
 class Migration1626442868Test extends TestCase

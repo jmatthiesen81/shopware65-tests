@@ -13,7 +13,6 @@ use Shopware\Core\Migration\V6_4\Migration1612980753AddLinkSettingsToCategory;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1612980753AddLinkSettingsToCategory
  */
 class Migration1612980753AddLinkSettingsToCategoryTest extends TestCase
@@ -61,7 +60,7 @@ class Migration1612980753AddLinkSettingsToCategoryTest extends TestCase
         $migration = new Migration1612980753AddLinkSettingsToCategory();
         $migration->update($this->connection);
 
-        $schemaManager = $this->connection->createSchemaManager();
+        $schemaManager = $this->connection->getSchemaManager();
         $columns = $schemaManager->listTableColumns(CategoryTranslationDefinition::ENTITY_NAME);
 
         static::assertArrayHasKey('link_type', $columns);

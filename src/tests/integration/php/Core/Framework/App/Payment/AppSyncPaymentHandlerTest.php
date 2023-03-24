@@ -14,7 +14,7 @@ use Shopware\Core\System\StateMachine\Aggregation\StateMachineTransition\StateMa
 /**
  * @internal
  */
-class AppSyncPaymentHandlerTest extends AbstractAppPaymentHandlerTestCase
+class AppSyncPaymentHandlerTest extends AbstractAppPaymentHandlerTest
 {
     public function testPay(): void
     {

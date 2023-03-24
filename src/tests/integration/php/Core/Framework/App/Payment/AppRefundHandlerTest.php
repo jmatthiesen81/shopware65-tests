@@ -13,7 +13,7 @@ use Shopware\Core\Framework\App\Payment\Response\RefundResponse;
 /**
  * @internal
  */
-class AppRefundHandlerTest extends AbstractAppPaymentHandlerTestCase
+class AppRefundHandlerTest extends AbstractAppPaymentHandlerTest
 {
     public function testRefund(): void
     {

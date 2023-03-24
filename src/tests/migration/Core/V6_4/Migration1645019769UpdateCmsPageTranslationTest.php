@@ -10,7 +10,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1645019769UpdateCmsPageTranslation
  */
 class Migration1645019769UpdateCmsPageTranslationTest extends TestCase

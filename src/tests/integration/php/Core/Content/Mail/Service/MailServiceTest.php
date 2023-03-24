@@ -82,7 +82,7 @@ class MailServiceTest extends TestCase
     /**
      * @return array<int, mixed[]>
      */
-    public static function senderEmailDataProvider(): array
+    public function senderEmailDataProvider(): array
     {
         return [
             ['basic@example.com', 'basic@example.com', null, null],
@@ -101,7 +101,7 @@ class MailServiceTest extends TestCase
     {
         $this->getContainer()
             ->get(Connection::class)
-            ->executeStatement('DELETE FROM system_config WHERE configuration_key  IN ("core.mailerSettings.senderAddress", "core.basicInformation.email")');
+            ->executeUpdate('DELETE FROM system_config WHERE configuration_key  IN ("core.mailerSettings.senderAddress", "core.basicInformation.email")');
 
         $systemConfig = $this->getContainer()->get(SystemConfigService::class);
         if ($configSender !== null) {

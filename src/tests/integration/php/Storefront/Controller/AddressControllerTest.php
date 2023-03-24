@@ -92,7 +92,7 @@ class AddressControllerTest extends TestCase
 
     public function testCreateBillingAddressIsNewSelectedAddress(): void
     {
-        [$customerId] = $this->createCustomers();
+        [$customerId, ] = $this->createCustomers();
 
         $context = $this->getContainer()
             ->get(SalesChannelContextFactory::class)
@@ -128,7 +128,7 @@ class AddressControllerTest extends TestCase
 
     public function testCreateShippingAddressIsNewSelectedAddress(): void
     {
-        [$customerId] = $this->createCustomers();
+        [$customerId, ] = $this->createCustomers();
 
         $context = $this->getContainer()
             ->get(SalesChannelContextFactory::class)
@@ -553,7 +553,7 @@ class AddressControllerTest extends TestCase
     private function setPostalCodeOfTheCountryToBeRequired(): void
     {
         $this->getContainer()->get(Connection::class)
-            ->executeStatement('UPDATE `country` SET `postal_code_required` = 1
+            ->executeUpdate('UPDATE `country` SET `postal_code_required` = 1
                  WHERE id = :id', [
                 'id' => Uuid::fromHexToBytes($this->getValidCountryId()),
             ]);

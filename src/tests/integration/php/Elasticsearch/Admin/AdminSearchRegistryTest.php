@@ -27,7 +27,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
  * @package system-settings
  *
  * @internal
- *
  * @group skip-paratest
  */
 class AdminSearchRegistryTest extends TestCase

@@ -58,7 +58,7 @@ class ReloadDataResponseFactoryTest extends TestCase
     /**
      * @return array<int, array<string|bool>>
      */
-    public static function provideActionTypes(): array
+    public function provideActionTypes(): array
     {
         return [
             [NotificationResponse::ACTION_TYPE, false],

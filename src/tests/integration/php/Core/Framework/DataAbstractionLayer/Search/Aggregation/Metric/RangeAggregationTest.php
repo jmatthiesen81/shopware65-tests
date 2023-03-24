@@ -15,7 +15,6 @@ use Shopware\Core\Framework\Test\TestDataCollection;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Metric\RangeAggregation
  */
 class RangeAggregationTest extends TestCase
@@ -35,7 +34,7 @@ class RangeAggregationTest extends TestCase
     /**
      * @return iterable<string, mixed>
      */
-    public static function buildRangeKeyDataProvider(): iterable
+    public function buildRangeKeyDataProvider(): iterable
     {
         yield 'empty from and empty to' => [null, null, '*-*'];
         yield 'empty from and to' => [null, 10, '*-10'];
@@ -57,7 +56,7 @@ class RangeAggregationTest extends TestCase
     /**
      * @return array<string, array{rangesDefinition: mixed, rangesExpectedResult: mixed}>
      */
-    public static function rangeAggregationDataProvider(): iterable
+    public function rangeAggregationDataProvider(): iterable
     {
         yield 'default ranges test cases' => [
             'rangesDefinition' => [

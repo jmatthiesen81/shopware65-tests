@@ -48,7 +48,6 @@ use Symfony\Component\Messenger\MessageBus;
 
 /**
  * @internal
- *
  * @covers \Shopware\Storefront\Theme\ThemeCompiler
  */
 class ThemeCompilerTest extends TestCase

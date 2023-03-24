@@ -80,7 +80,6 @@ class CheckoutControllerTest extends TestCase
 
     /**
      * @dataProvider customerComments
-     *
      * @group slow
      *
      * @param string|float|int|bool|null $customerComment
@@ -94,7 +93,7 @@ class CheckoutControllerTest extends TestCase
     /**
      * @return array<mixed>
      */
-    public static function customerComments(): array
+    public function customerComments(): array
     {
         return [
             ["  Hello, \nthis is a customer comment!  ", "Hello, \nthis is a customer comment!"],
@@ -327,7 +326,7 @@ class CheckoutControllerTest extends TestCase
     /**
      * @return array<array<mixed>>
      */
-    public static function errorDataProvider(): array
+    public function errorDataProvider(): array
     {
         return [
             // One shipping method blocked is expected to be switched

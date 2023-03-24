@@ -8,7 +8,6 @@ use Shopware\Core\Migration\V6_4\Migration1627540693MakeAccessTokenNullable;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1627540693MakeAccessTokenNullable
  */
 class Migration1627540693MakeAccessTokenNullableTest extends TestCase
@@ -23,7 +22,7 @@ class Migration1627540693MakeAccessTokenNullableTest extends TestCase
         $m = new Migration1627540693MakeAccessTokenNullable();
         $m->update($connection);
 
-        $columns = $connection->createSchemaManager()->listTableColumns('import_export_file');
+        $columns = $connection->getSchemaManager()->listTableColumns('import_export_file');
 
         $foundColumn = false;
         foreach ($columns as $column) {

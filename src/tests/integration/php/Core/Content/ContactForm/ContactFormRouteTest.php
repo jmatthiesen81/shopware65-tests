@@ -22,7 +22,6 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
  * @internal
  *
  * @package content
- *
  * @group store-api
  */
 class ContactFormRouteTest extends TestCase
@@ -138,7 +137,7 @@ class ContactFormRouteTest extends TestCase
         static::assertArrayHasKey('h.mac@example.com', $recipients);
     }
 
-    public static function navigationProvider(): \Generator
+    public function navigationProvider(): \Generator
     {
         yield 'Category with Slot Config' => [CategoryDefinition::ENTITY_NAME];
         yield 'Landing Page with Slot Config' => [LandingPageDefinition::ENTITY_NAME];
@@ -217,7 +216,7 @@ class ContactFormRouteTest extends TestCase
         $expectClosure($response);
     }
 
-    public static function contactFormWithDomainProvider(): \Generator
+    public function contactFormWithDomainProvider(): \Generator
     {
         yield 'subscribe with URL protocol HTTPS' => [
             'Y https://shopware.test',

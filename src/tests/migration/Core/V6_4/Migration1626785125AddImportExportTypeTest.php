@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_4\Migration1626785125AddImportExportType;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1626785125AddImportExportType
  */
 class Migration1626785125AddImportExportTypeTest extends TestCase

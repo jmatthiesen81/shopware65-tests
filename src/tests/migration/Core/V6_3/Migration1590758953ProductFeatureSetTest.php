@@ -19,9 +19,7 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @group slow
- *
  * @covers \Shopware\Core\Migration\V6_3\Migration1590758953ProductFeatureSet
  *
  * @phpstan-type DbColumn array{name: string, type: Type, notnull: bool}
@@ -85,7 +83,7 @@ class Migration1590758953ProductFeatureSetTest extends TestCase
     public function testProductTableExtensionIsComplete(): void
     {
         $columns = array_filter(
-            $this->connection->createSchemaManager()->listTableColumns('product'),
+            $this->connection->getSchemaManager()->listTableColumns('product'),
             static fn (Column $column): bool => \in_array($column->getName(), ['product_feature_set_id', 'featureSet'], true)
         );
 
@@ -145,14 +143,14 @@ class Migration1590758953ProductFeatureSetTest extends TestCase
     /**
      * @return array{0: string, 1: DbColumn[]}[]
      */
-    public static function tableInformationProvider(): array
+    public function tableInformationProvider(): array
     {
         return [
             [
                 ProductFeatureSetDefinition::ENTITY_NAME,
                 [
                     self::getColumn('id', new BinaryType(), true),
-                    self::getColumn('features', self::getJsonType()),
+                    self::getColumn('features', $this->getJsonType()),
                     self::getColumn('created_at', new DateTimeType(), true),
                     self::getColumn('updated_at', new DateTimeType()),
                 ],
@@ -189,11 +187,11 @@ class Migration1590758953ProductFeatureSetTest extends TestCase
      *
      * @see https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/types.html#json
      */
-    private static function getJsonType(): Type
+    private function getJsonType(): Type
     {
         return KernelLifecycleManager::getConnection()
             ->getDatabasePlatform()
-            ->getJsonTypeDeclarationSQL([]) === 'JSON' ? new JsonType() : new TextType();
+            ->hasNativeJsonType() ? new JsonType() : new TextType();
     }
 
     /**
@@ -202,8 +200,8 @@ class Migration1590758953ProductFeatureSetTest extends TestCase
     private function fetchTableInformation(string $name): array
     {
         $columns = $this->connection
-            ->createSchemaManager()
-            ->introspectTable($name)
+            ->getSchemaManager()
+            ->listTableDetails($name)
             ->getColumns();
 
         return array_map(static fn (Column $column): array => self::getColumn(
@@ -237,7 +235,7 @@ class Migration1590758953ProductFeatureSetTest extends TestCase
     private function hasColumn(Connection $connection, string $table, string $columnName): bool
     {
         return \count(array_filter(
-            $connection->createSchemaManager()->listTableColumns($table),
+            $connection->getSchemaManager()->listTableColumns($table),
             static fn (Column $column): bool => $column->getName() === $columnName
         )) > 0;
     }

@@ -5,8 +5,6 @@ namespace Shopware\Tests\Integration\Core\Checkout\Document\Renderer;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Shopware\Core\Checkout\Cart\Cart;
-use Shopware\Core\Checkout\Cart\LineItemFactoryHandler\ProductLineItemFactory;
-use Shopware\Core\Checkout\Cart\PriceDefinitionFactory;
 use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
 use Shopware\Core\Checkout\Customer\CustomerEntity;
 use Shopware\Core\Checkout\Document\Event\DocumentTemplateRendererParameterEvent;
@@ -20,6 +18,7 @@ use Shopware\Core\Checkout\Document\Struct\DocumentGenerateOperation;
 use Shopware\Core\Checkout\Order\Aggregate\OrderAddress\OrderAddressEntity;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Checkout\Test\Document\DocumentTrait;
+use Shopware\Core\Content\Product\Cart\ProductLineItemFactory;
 use Shopware\Core\Content\Test\Product\ProductBuilder;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Adapter\Translation\Translator;
@@ -589,7 +588,7 @@ class InvoiceRendererTest extends TestCase
 
         $products = [];
 
-        $factory = new ProductLineItemFactory(new PriceDefinitionFactory());
+        $factory = new ProductLineItemFactory();
 
         $ids = new IdsCollection();
 
@@ -613,7 +612,7 @@ class InvoiceRendererTest extends TestCase
 
             $products[] = $product;
 
-            $lineItems[] = $factory->create(['id' => $ids->get($number), 'referencedId' => $ids->get($number)], $this->salesChannelContext);
+            $lineItems[] = $factory->create($ids->get($number));
             $this->addTaxDataToSalesChannel($this->salesChannelContext, $product['tax']);
         }
 

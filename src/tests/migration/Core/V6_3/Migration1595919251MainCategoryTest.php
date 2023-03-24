@@ -8,7 +8,6 @@ use Shopware\Core\Migration\V6_3\Migration1595919251MainCategory;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_3\Migration1595919251MainCategory
  */
 class Migration1595919251MainCategoryTest extends TestCase

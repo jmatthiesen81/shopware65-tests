@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_4\Migration1667806582AddCreatedByIdAndUpdatedById
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1667806582AddCreatedByIdAndUpdatedByIdToCustomer
  */
 class Migration1667806582AddCreatedByIdAndUpdatedByIdToCustomerTest extends TestCase

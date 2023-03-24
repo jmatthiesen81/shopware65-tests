@@ -62,7 +62,6 @@ class OpenModalResponseFactoryTest extends TestCase
 
     /**
      * @param array<bool|string> $payload
-     *
      * @dataProvider provideInvalidPayloads
      */
     public function testThrowsExceptionWhenValidationFails(array $payload, string $message): void
@@ -80,7 +79,7 @@ class OpenModalResponseFactoryTest extends TestCase
     /**
      * @return array<array<string|bool>>
      */
-    public static function provideActionTypes(): array
+    public function provideActionTypes(): array
     {
         return [
             [NotificationResponse::ACTION_TYPE, false],
@@ -93,7 +92,7 @@ class OpenModalResponseFactoryTest extends TestCase
     /**
      * @return array<array<array<bool|string>|string>>
      */
-    public static function provideInvalidPayloads(): array
+    public function provideInvalidPayloads(): array
     {
         return [
             [

@@ -29,7 +29,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
  * @internal
- *
  * @group skip-paratest
  *
  * @package system-settings

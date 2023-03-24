@@ -39,9 +39,7 @@ use Symfony\Component\RateLimiter\Storage\CacheStorage;
 
 /**
  * @internal
- *
  * @group slow
- *
  * @covers \Shopware\Core\Framework\RateLimiter\RateLimiter
  */
 class RateLimiterTest extends TestCase

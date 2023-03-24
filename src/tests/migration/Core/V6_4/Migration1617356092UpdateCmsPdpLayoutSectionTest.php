@@ -2,7 +2,6 @@
 
 namespace Shopware\Tests\Migration\Core\V6_4;
 
-use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Test\TestCaseBase\KernelLifecycleManager;
@@ -13,7 +12,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1617356092UpdateCmsPdpLayoutSection
  */
 class Migration1617356092UpdateCmsPdpLayoutSectionTest extends TestCase
@@ -143,7 +141,7 @@ class Migration1617356092UpdateCmsPdpLayoutSectionTest extends TestCase
             SELECT config
             FROM cms_slot_translation
             WHERE cms_slot_id IN (:slotId)
-        ', ['slotId' => $slotIds], ['slotId' => ArrayParameterType::STRING]);
+        ', ['slotId' => $slotIds], ['slotId' => Connection::PARAM_STR_ARRAY]);
     }
 
     /**

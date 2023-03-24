@@ -10,7 +10,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1643724178ChangePromotionCodesProfile
  */
 class Migration1643724178ChangePromotionCodesProfileTest extends TestCase

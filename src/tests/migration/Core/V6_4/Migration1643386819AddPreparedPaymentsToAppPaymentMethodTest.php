@@ -9,7 +9,6 @@ use Shopware\Core\Migration\V6_4\Migration1643386819AddPreparedPaymentsToAppPaym
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1643386819AddPreparedPaymentsToAppPaymentMethod
  */
 class Migration1643386819AddPreparedPaymentsToAppPaymentMethodTest extends TestCase

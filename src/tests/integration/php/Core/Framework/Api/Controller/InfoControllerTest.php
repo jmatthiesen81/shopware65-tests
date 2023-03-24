@@ -21,6 +21,7 @@ use Shopware\Core\Framework\Event\CustomerAware;
 use Shopware\Core\Framework\Event\MailAware;
 use Shopware\Core\Framework\Event\OrderAware;
 use Shopware\Core\Framework\Event\SalesChannelAware;
+use Shopware\Core\Framework\Feature;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Test\Adapter\Twig\fixtures\BundleFixture;
 use Shopware\Core\Framework\Test\IdsCollection;
@@ -208,6 +209,8 @@ class InfoControllerTest extends TestCase
 
     public function testBusinessEventRoute(): void
     {
+        Feature::skipTestIfActive('v6.5.0.0', $this);
+
         $url = '/api/_info/events.json';
         $client = $this->getBrowser();
         $client->request('GET', $url);
@@ -224,6 +227,9 @@ class InfoControllerTest extends TestCase
             [
                 'name' => 'checkout.customer.login',
                 'class' => CustomerLoginEvent::class,
+                'mailAware' => true,
+                'logAware' => false,
+                'salesChannelAware' => true,
                 'extensions' => [],
                 'data' => [
                     'customer' => [
@@ -248,6 +254,9 @@ class InfoControllerTest extends TestCase
             [
                 'name' => 'checkout.order.placed',
                 'class' => CheckoutOrderPlacedEvent::class,
+                'mailAware' => true,
+                'logAware' => false,
+                'salesChannelAware' => true,
                 'extensions' => [],
                 'data' => [
                     'order' => [
@@ -269,6 +278,9 @@ class InfoControllerTest extends TestCase
             [
                 'name' => 'state_enter.order_delivery.state.shipped_partially',
                 'class' => OrderStateMachineStateChangeEvent::class,
+                'mailAware' => true,
+                'logAware' => false,
+                'salesChannelAware' => true,
                 'extensions' => [],
                 'data' => [
                     'order' => [
@@ -438,6 +450,13 @@ class InfoControllerTest extends TestCase
                 'delayable' => true,
             ],
         ];
+
+        if (!Feature::isActive('v6.5.0.0')) {
+            $expected[0]['requirements'] = [
+                OrderAware::class,
+                'orderAware',
+            ];
+        }
 
         foreach ($expected as $action) {
             $actualActions = array_values(array_filter($response, fn ($x) => $x['name'] === $action['name']));

@@ -14,7 +14,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1641289204FixProductComparisonGoogleShippingPriceDisplay
  */
 class Migration1641289204FixProductComparisonGoogleShippingPriceDisplayTest extends TestCase
@@ -71,7 +70,7 @@ class Migration1641289204FixProductComparisonGoogleShippingPriceDisplayTest exte
     /**
      * @return array{old_template: string, expectedTemplate: string}[][]
      */
-    public static function dataProvider(): array
+    public function dataProvider(): array
     {
         $old_template = (string) file_get_contents(__DIR__ . '/../../../../src/Core/Migration/Fixtures/productComparison-export-profiles/next-19135/body_old.xml.twig');
         $new_template = (string) file_get_contents(__DIR__ . '/../../../../src/Core/Migration/Fixtures/productComparison-export-profiles/next-19135/body_new.xml.twig');

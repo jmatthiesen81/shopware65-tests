@@ -10,7 +10,6 @@ use Shopware\Tests\Migration\MigrationTestTrait;
 
 /**
  * @internal
- *
  * @covers \Shopware\Core\Migration\V6_4\Migration1652441129ReplaceIconNames
  */
 class Migration1652441129ReplaceIconNamesTest extends TestCase
@@ -62,7 +61,7 @@ class Migration1652441129ReplaceIconNamesTest extends TestCase
             ->from('sales_channel_type')
             ->where('icon_name = :iconName')
             ->setParameter('iconName', $oldIconName)
-            ->executeQuery()
+            ->execute()
             ->fetchFirstColumn();
 
         foreach ($oldIconSalesChannelTypes as $id) {

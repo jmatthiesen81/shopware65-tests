@@ -21,9 +21,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  * @package customer-order
  *
  * @internal
- *
  * @group store-api
- *
  * @covers \Shopware\Core\Content\Newsletter\SalesChannel\NewsletterSubscribeRoute
  */
 class NewsletterSubscribeRouteTest extends TestCase
@@ -374,7 +372,7 @@ class NewsletterSubscribeRouteTest extends TestCase
         static::assertSame(1, $count);
     }
 
-    public static function subscribeWithDomainProvider(): \Generator
+    public function subscribeWithDomainProvider(): \Generator
     {
         yield 'subscribe with invalid first name' => [
             'Y https://shopware.test',
@@ -404,7 +402,7 @@ class NewsletterSubscribeRouteTest extends TestCase
         ];
     }
 
-    public static function subscribeWithDomainAndLeadingSlashProvider(): \Generator
+    public function subscribeWithDomainAndLeadingSlashProvider(): \Generator
     {
         yield 'test without leading slash' => [['domain' => 'http://my-evil-page', 'expectDomain' => 'http://my-evil-page']];
 
