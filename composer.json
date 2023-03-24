@@ -27,6 +27,9 @@
     "phpunit/phpunit": "~9.6",
     "symfony/dom-crawler": "~6.2.0"
   },
+  "conflict": {
+    "shopware/core": "6.5.0.0-dev || < 6.5.0.0-rc1 || > 6.5.0.0-rc3"
+  },
   "autoload": {
     "psr-4": {
       "Shopware\\Tests\\Integration\\": "src/tests/integration/php/",
